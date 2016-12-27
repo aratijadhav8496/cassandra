@@ -1,0 +1,42 @@
+name:Arti Maske(B1)
+roll no:16
+
+
+exam@exam-ThinkCentre-M71e:~$ cassandra/bin/cqlsh
+Connected to Test Cluster at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 2.1.11 | CQL spec 3.2.1 | Native protocol v3]
+Use HELP for help.
+cqlsh> create keyspace mykeyspace with replication= {'class' : 'simplestrategy', 'replication_factor' : 1};
+ConfigurationException: <ErrorMessage code=2300 [Query invalid because of configuration issue] message="Unable to find replication strategy class 'org.apache.cassandra.locator.simplestrategy'">
+cqlsh> use mykeyspace
+   ... ;
+cqlsh:mykeyspace> create table student(
+              ... roll int primary key,
+              ... fname text,
+              ... lname text
+              ... 
+              ... 
+              ... 
+              ... );
+
+cqlsh:mykeyspace> insert into student (roll,fname,lname) values(1,'dipali','kosarkar');
+cqlsh:mykeyspace> insert into student (roll,fname,lname) values(2,'arti','maske');
+cqlsh:mykeyspace> insert into student (roll,fname,lname) values(3,'pooja','ghadge');
+cqlsh:mykeyspace> select * from student;
+ roll | fname  | lname
+------+--------+----------
+    1 | dipali | kosarkar
+    2 |   arti |    maske
+    3 |  pooja |   ghadge
+
+(3 rows)
+cqlsh:mykeyspace> create index on student(lname);
+secqlsh:mykeyspaceselect * from student where lname='maske';
+
+ roll | fname | lname
+------+-------+-------
+    2 |  arti | maske
+
+(1 rows)
+cqlsh:mykeyspace> 
+
